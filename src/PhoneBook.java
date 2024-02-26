@@ -7,6 +7,7 @@ public class PhoneBook {
 
 
     public HashMap<String, ArrayList<Long>> readFile() throws IOException {
+//        Чтение записной книги
         BufferedReader reader = new BufferedReader(new FileReader("src/phonebook.txt"));
         String line = reader.readLine();
 
@@ -23,6 +24,7 @@ public class PhoneBook {
         return fileTextList;
     }
     public void writeFile(HashMap<String, ArrayList<Long>> arrList) {
+//        Обновление данных записной книги
         try (FileWriter fw = new FileWriter("src/phonebook.txt", false)) {
             for (var i: arrList.entrySet()) {
                 fw.write(worldUpperCase(i.getKey()) + ":");
@@ -39,6 +41,7 @@ public class PhoneBook {
     }
 
     public String worldUpperCase(String text) {
+//        Заглавные буквы имени и фамилии
         String[] textArr = text.split(" ");
         for (int i = 0; i < textArr.length; i++) {
             textArr[i] = textArr[i].substring(0, 1).toUpperCase() + textArr[i].substring(1);
@@ -47,6 +50,7 @@ public class PhoneBook {
     }
 
     public void add(Boolean flag){
+//    Добавление абонента
         ArrayList<Long> temp_arr = new ArrayList<>();
         System.out.println("Введите имя и фамилию: ");
         String name = worldUpperCase(iScanner.nextLine().toLowerCase());
@@ -80,9 +84,10 @@ public class PhoneBook {
 
     }
     public void del(){
+//        Удаление абонента
         while (true) {
             System.out.println("Введите имя и фамилию абонента которого нужно удалить" +
-                    "или 'end' для возврата в главное меню");
+                    " или 'end' для возврата в главное меню");
             String name = worldUpperCase(iScanner.nextLine().toLowerCase());
             if ("end".equalsIgnoreCase(name)) {
                 return;
@@ -97,6 +102,7 @@ public class PhoneBook {
         }
     }
     public void print(Boolean flag){
+//        Вывод данных на печать
         String name = null;
         if (!flag) {
             System.out.println("Введите имя фамилию абонента которого надо распечатать, " +
@@ -124,6 +130,7 @@ public class PhoneBook {
         }
     }
     public void edit(){
+//        Редактирование записи
         while (true) {
             print(true);
             System.out.println("Введите имя или фамилию абонента которого надо изменить" +
